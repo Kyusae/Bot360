@@ -15,7 +15,12 @@ class Bot360:
         self.password = password
         self.filial = filial
         self.Pedido = Pedido
-        self.driver = webdriver.Firefox(executable_path="geckodriver.exe")
+        try:
+            self.driver = webdriver.Firefox(executable_path="geckodriver.exe")
+        except:
+            options = webdriver.ChromeOptions()
+            options.add_argument('lang=pt-br')
+            self.driver = webdriver.Chrome(executable_path=r'chromedriver.exe', chrome_options=options) 
 
     def login(self):
         driver = self.driver
